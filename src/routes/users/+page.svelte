@@ -39,7 +39,8 @@
 		justify-content: center;
 		align-items: center;
 		gap: 1rem;
-		margin-top: 20px;
+		margin-top: 4rem;
+		margin-bottom: 4rem;
 	}
 	.pagination-container a {
 		text-decoration: none;
