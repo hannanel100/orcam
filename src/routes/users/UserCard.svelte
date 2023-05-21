@@ -1,36 +1,117 @@
 <script lang="ts">
+	import Button from '$lib/Button/Button.svelte';
 	import type { User } from '$lib/types/';
-	import { goto } from '$app/navigation';
+
 	export let user: User;
 	console.log({ user });
-	const handleNavigation = () => {
-		goto(`/users/${user.userId}`);
-	};
+	let { firstName, lastName, email, createdAt } = user;
+	// format createdAt to be more readable, in dd/mm/yyyy format using the Intl.DateTimeFormat
+	createdAt = new Intl.DateTimeFormat('en-GB').format(new Date(createdAt));
+	console.log('🚀 ~ file: UserCard.svelte:9 ~ createdAt:', createdAt);
 </script>
 
 <div class="users-card">
-	<a href="/users/{user.userId}">
-		<p>{user.email}</p>
-	</a>
+	<div class="left-container">
+		{#if user.firstName}
+			<p class="firstName">{firstName}</p>
+		{:else}
+			<p class="firstName">no first name</p>
+		{/if}
+		{#if user.lastName}
+			<p class="lastName">{lastName}</p>
+		{:else}
+			<p class="lastName">no last name</p>
+		{/if}
+	</div>
+	<div class="right-container">
+		<div class="email-date-container">
+			<p class="email">{email}</p>
+			<p class="createdAt">{createdAt}</p>
+		</div>
+		<div>
+			<Button><a href="/users/{user.userId}">details</a></Button>
+		</div>
+	</div>
 </div>
 
 <style>
+	:root {
+		/* variable for font size */
+		--font-size: 16px;
+		--font-size-sm: 14px;
+		--font-siz-xs: 12px;
+		--font-size-md: 18px;
+		--font-size-lg: 20px;
+		--font-size-xxs: 10px;
+	}
 	.users-card {
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
-		width: 50%;
+		gap: 1rem;
+		width: 100%;
 		height: 100px;
-		border: 1px solid #000;
-		border-radius: 5px;
+		border-bottom: 1px solid #cdc2c2;
 		margin: auto;
-		&:hover {
-			background-color: #eee;
-			scale: 1.1;
-		}
 	}
-	.users-card a {
+	.users-card .left-container {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.users-card .firstName,
+	.users-card .lastName {
+		font-size: var(--font-size-lg);
+		font-weight: 700;
+	}
+	.users-card .firstName::first-letter,
+	.users-card .lastName::first-letter {
+		text-transform: uppercase;
+	}
+	.right-container {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.email-date-container {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.email-date-container .email {
+		font-size: var(--font-size-sm);
+		color: #848383;
+	}
+	a {
 		text-decoration: none;
-		color: #000;
+		width: 100%;
+		color: #fff;
+	}
+	@media (max-width: 768px) {
+		.users-card {
+			gap: 0.5rem;
+			overflow: hidden;
+			white-space: nowrap;
+			padding: 0 0.5rem;
+		}
+		.users-card .firstName,
+		.users-card .lastName {
+			font-size: var(--font-size-sm);
+		}
+		.email {
+			font-size: var(--font-size-xxs);
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		.createdAt {
+			display: none;
+		}
+		.left-container {
+			flex-direction: column;
+		}
+		.right-container {
+			flex-direction: column;
+		}
 	}
 </style>

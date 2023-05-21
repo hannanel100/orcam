@@ -8,8 +8,8 @@
 	$: currentPage = Number($page.url.searchParams.get('page')) || 1;
 </script>
 
-<h1>Users</h1>
 <div class="users-container">
+	<h1>Users</h1>
 	{#each data.items as user}
 		<UserCard {user} />
 	{/each}
@@ -31,7 +31,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		width: 100%;
 		gap: 1rem;
+		margin: auto;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 
 	.pagination-container {
@@ -56,5 +60,10 @@
 	.pagination-container a.active {
 		background-color: #000;
 		color: #fff;
+	}
+	@media (min-width: 768px) {
+		.users-container {
+			width: 90%;
+		}
 	}
 </style>
