@@ -16,7 +16,6 @@ export async function fetchUsers(
 		throw error(400, 'limit must be less than 100');
 	}
 
-	console.log('🚀 ~ file: fetchUsers.ts:19 ~ ORCAM_API_KEY:', ORCAM_API_KEY);
 	const response = await fetch(
 		`https://admin.dev.orcam.io/api/v8/users?page=${skip}&size=${limit}&sort=email:desc`,
 		{
@@ -27,6 +26,5 @@ export async function fetchUsers(
 		}
 	);
 	const data: Data = await response.json();
-	console.log('🚀 ~ file: +page.server.ts:50 ~ fetchUsers ~ data:', data);
 	return data;
 }
