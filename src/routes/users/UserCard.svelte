@@ -90,9 +90,10 @@
 	@media (max-width: 768px) {
 		.users-card {
 			gap: 0.5rem;
-			overflow: hidden;
-			white-space: nowrap;
+			display: grid;
 			padding: 0;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: auto;
 		}
 		.users-card .firstName,
 		.users-card .lastName {
@@ -100,15 +101,23 @@
 		}
 		.email {
 			font-size: var(--font-size-xxs);
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 		.createdAt {
 			display: none;
 		}
 		.left-container {
-			flex-direction: column;
+			display: block;
 		}
 		.right-container {
-			flex-direction: column;
+			display: block;
+		}
+		@media (max-width: 480px) {
+			.email {
+				width: 10rem;
+			}
 		}
 	}
 </style>

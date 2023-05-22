@@ -23,16 +23,8 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		width: 100%;
+		width: 90%;
 		gap: 1rem;
 		margin: auto;
-		overflow: hidden;
-		white-space: nowrap;
-	}
-
-	@media (min-width: 768px) {
-		.users-container {
-			width: 90%;
-		}
 	}
 </style>

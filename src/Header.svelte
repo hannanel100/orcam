@@ -52,13 +52,6 @@
 		--black: #000;
 		--accent-color: #ff6f61;
 		--font-size: 1rem;
-		--font-family: 'Roboto', sans-serif;
-		--transition-duration: 0.3s;
-		--transition-timing-function: ease-in-out;
-		--transition-delay: 0s;
-		--transition-property: all;
-		--transition: var(--transition-property) var(--transition-duration)
-			var(--transition-timing-function) var(--transition-delay);
 	}
 	a {
 		text-decoration: none;
