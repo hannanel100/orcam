@@ -2,6 +2,7 @@
 	import { fly } from 'svelte/transition';
 
 	import AnimatedHamburger from './Hamburger.svelte';
+	import Button from '$lib/Button/Button.svelte';
 
 	export let open = false;
 	export let onClick = (): void => {
@@ -9,43 +10,143 @@
 	};
 </script>
 
-<header>
-	<header class="main">
-		<AnimatedHamburger {open} {onClick} />
-	</header>
-
-	{#if open}
-		<nav class="mobile-nav" transition:fly={{ y: -200, duration: 400 }}>
-			<a href="/">Home</a>
+<header class="header">
+	<div class="mobile-header">
+		<Button variant="secondary">
+			<a href="https://www.hannanel.dev">Check me out!</a>
+		</Button>
+		<a href="/">
+			<img src="/logo.png" alt="logo" class="logo" />
+		</a>
+		<div class="hamburger-container">
+			<AnimatedHamburger {open} {onClick} />
+		</div>
+		{#if open}
+			<nav class="mobile-nav" transition:fly={{ y: -200, duration: 400 }}>
+				<a href="/" on:click={onClick}>Home</a>
+				<div class="spacer" />
+				<a href="/users" on:click={onClick}>Users</a>
+				<div class="spacer" />
+				<a href="/about" on:click={onClick}>About</a>
+				<div class="spacer" />
+			</nav>
+		{/if}
+	</div>
+	<div class="desktop-header">
+		<a href="/">
+			<img src="/logo.png" alt="logo" class="logo" />
+		</a>
+		<Button variant="secondary">
+			<a href="https://www.hannanel.dev">Check me out!</a>
+		</Button>
+		<nav class="desktop-nav">
+			<a href="/users">Users</a>
 			<a href="/about">About</a>
 		</nav>
-	{/if}
+	</div>
 </header>
 
 <style>
-	header {
+	:root {
+		--white: #fff;
+		--black: #000;
+		--accent-color: #ff6f61;
+		--font-size: 1rem;
+		--font-family: 'Roboto', sans-serif;
+		--transition-duration: 0.3s;
+		--transition-timing-function: ease-in-out;
+		--transition-delay: 0s;
+		--transition-property: all;
+		--transition: var(--transition-property) var(--transition-duration)
+			var(--transition-timing-function) var(--transition-delay);
+	}
+	a {
+		text-decoration: none;
+	}
+	.header {
+		position: relative;
+		width: 100%;
+		height: 4rem;
+		background-color: var(--black);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.logo {
+		width: 6rem;
+		aspect-ratio: auto;
+	}
+	.mobile-header {
 		position: relative;
 		font-size: 2rem;
+		width: 100%;
 		color: var(--accent-color);
-		background-color: var(--white);
 		z-index: 2;
-	}   
-    
-
-	.main {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+		padding: 0 1rem;
+	}
+	.mobile-header a {
+		color: var(--black);
+	}
+	.desktop-header {
+		display: none;
+	}
+	.desktop-header a {
+		color: var(--black);
 	}
 
-	nav {
+	.desktop-nav a,
+	.mobile-nav a {
+		color: var(--white);
+		transition: color 0.3s ease-in-out;
+	}
+	.mobile-nav .spacer {
+		width: 100%;
+		height: 1px;
+		background-color: var(--white);
+		opacity: 0.8;
+	}
+
+	.mobile-nav {
 		position: absolute;
 		z-index: -1;
-		width: 100%;
-		padding: 1rem;
+		width: 100vw;
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-		align-items: center;
-		background-color: var(--white);
+		align-items: flex-start;
+		background-color: var(--black);
+		inset: 0;
+	}
+	.mobile-nav a:first-of-type {
+		margin-top: 4rem;
+	}
+	.mobile-nav a {
+		margin-top: 2rem;
+		margin-left: 1rem;
+		font-size: 1.5rem;
+	}
+	.mobile-nav a:hover,
+	.desktop-nav a:hover {
+		color: var(--accent-color);
+	}
+	.desktop-nav {
+		display: flex;
+		gap: 1rem;
+	}
+	@media (min-width: 768px) {
+		.mobile-header {
+			display: none;
+		}
+		.desktop-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 0 1rem;
+			width: 100%;
+		}
 	}
 </style>

@@ -5,7 +5,7 @@
 	};
 
 	export let ariaLabel = 'toggle menu';
-	export let width: string | number = 80;
+	export let width: string | number = 40;
 </script>
 
 <button on:click={onClick} aria-expanded={open} aria-label={ariaLabel}>
@@ -25,6 +25,7 @@
 <style>
 	:root {
 		--transition-duration: 400ms;
+		--accent-color: #ff6f61;
 	}
 
 	button {
@@ -32,6 +33,13 @@
 		display: flex;
 		align-items: center;
 		overflow: hidden;
+		background-color: transparent;
+		border: none;
+		color: white;
+		transition: color 0.3s ease-in-out;
+	}
+	button:hover {
+		color: var(--accent-color);
 	}
 
 	svg {
