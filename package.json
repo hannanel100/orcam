@@ -36,6 +36,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/roboto": "^4.5.8"
+		"@fontsource/roboto": "^4.5.8",
+		"@fortawesome/free-solid-svg-icons": "^6.4.0",
+		"svelte-fa": "^3.0.3"
 	}
 }

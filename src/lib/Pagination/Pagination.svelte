@@ -1,27 +1,47 @@
 <script>
+	import Fa from 'svelte-fa/src/fa.svelte';
+	import {
+		faArrowLeft,
+		faArrowLeftLong,
+		faArrowRight,
+		faArrowRightLong
+	} from '@fortawesome/free-solid-svg-icons';
 	export let currentPage = 1;
 	export let pageSize = 10;
 	export let totalPages = 0;
+	let numOfPagesLinks = 5;
+	let innerWidth = 0;
+	$: {
+		if (innerWidth < 768) {
+			numOfPagesLinks = 2;
+		} else {
+			numOfPagesLinks = 5;
+		}
+	}
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="pagination-container">
 	{#if currentPage - 50 > 0}
-		<a href={`/users?page=${currentPage - 50}&limit=${pageSize}`} class="tooltip"
-			>&#8592;&#8592;
+		<a href={`/users?page=${currentPage - 50}&limit=${pageSize}`} class="tooltip">
+			<Fa icon={faArrowLeftLong} />
+
 			<span class="tooltiptext">Back 50 pages</span></a
 		>
 	{/if}
 	{#if currentPage - 10 > 0}
-		<a href={`/users?page=${currentPage - 10}&limit=${pageSize}`} class="tooltip"
-			>&#8592;
+		<a href={`/users?page=${currentPage - 10}&limit=${pageSize}`} class="tooltip">
+			<Fa icon={faArrowLeft} />
 			<span class="tooltiptext">Back 10 pages</span></a
 		>
 	{/if}
 	{#each Array.from({ length: totalPages }) as _, i}
 		<!-- only show the previous 5 if they exist and the next five if they exist -->
-		{#if i + 1 >= currentPage - 5 && i + 1 <= currentPage + 5}
+		{#if i + 1 >= currentPage - numOfPagesLinks && i + 1 <= currentPage + numOfPagesLinks}
 			<a
 				href={`/users?page=${i + 1}&limit=${pageSize}`}
+				data-sveltekit-preload-data="hover"
 				class={`${currentPage === i + 1 ? 'active' : ''}`}>{i + 1}</a
 			>
 		{/if}
@@ -36,14 +56,14 @@
 	{/if}
 	<!-- add an arrow if not in the end of the list, arrow will skip 10 pages -->
 	{#if currentPage + 10 < totalPages}
-		<a href={`/users?page=${currentPage + 10}&limit=${pageSize}`} class="tooltip"
-			>&#8594;
+		<a href={`/users?page=${currentPage + 10}&limit=${pageSize}`} class="tooltip">
+			<Fa icon={faArrowRight} />
 			<span class="tooltiptext">Skip 10 pages</span></a
 		>
 	{/if}
 	{#if currentPage + 50 < totalPages}
 		<a href={`/users?page=${currentPage + 50}&limit=${pageSize}`} class="tooltip">
-			&#8594;&#8594;
+			<Fa icon={faArrowRightLong} />
 			<span class="tooltiptext">Skip 50 pages</span></a
 		>
 	{/if}
@@ -98,9 +118,15 @@
 		visibility: visible;
 	}
 	@media (max-width: 768px) {
+		.pagination-container {
+			justify-content: start;
+			gap: 0.5rem;
+			padding-left: 1rem;
+		}
 		.pagination-container a {
-			width: 1rem;
-			height: 1rem;
+			width: 1.25rem;
+			height: 1.25rem;
+			padding: 0.15rem;
 		}
 	}
 </style>
