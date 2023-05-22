@@ -28,7 +28,8 @@
 			<p class="createdAt">{createdAt}</p>
 		</div>
 		<div>
-			<Button><a href="/users/{user.userId}">details</a></Button>
+			<Button><a href="/users/{user.userId}" data-sveltekit-preload-data="hover">details</a></Button
+			>
 		</div>
 	</div>
 </div>
