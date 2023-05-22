@@ -24,7 +24,7 @@
 		&:first-letter {
 			text-transform: capitalize;
 		}
-		transition: opacity 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
 	}
 	.primary {
 		background-color: #000;
@@ -36,5 +36,6 @@
 	}
 	.btn:hover {
 		opacity: 0.8;
+		color: var(--accent-color);
 	}
 </style>

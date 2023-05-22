@@ -85,7 +85,7 @@
 	a {
 		text-decoration: none;
 		width: 100%;
-		color: #fff;
+		color: inherit;
 	}
 	@media (max-width: 768px) {
 		.users-card {

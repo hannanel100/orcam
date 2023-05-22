@@ -1,5 +1,6 @@
 <script lang="ts">
 	// if property is null, return string 'N/A'
+	import Button from '$lib/Button/Button.svelte';
 	import type { PageData } from './$types';
 	const formatData = (property: string | null) => {
 		return property ? property : 'N/A';
@@ -50,18 +51,27 @@
 		formattedData;
 </script>
 
-<div class="user-container">
-	<p><strong>Email:</strong> {email}</p>
-	<p><strong>First Name: </strong><span class="capitalize"> {firstName}</span></p>
-	<p><strong>Last Name: </strong> <span class="capitalize"> {lastName}</span></p>
-	<p><strong>Phone:</strong> {phone}</p>
-	<p><strong>Country:</strong> {country}</p>
-	<p><strong>Date Created:</strong> {createdAt}</p>
-	<p><strong>Last Access Time:</strong> {lastAccessTime}</p>
-	<p><strong>Ip Address:</strong> {ipAddress}</p>
+<div class="page-container">
+	<div class="user-container">
+		<p><strong>Email:</strong> {email}</p>
+		<p><strong>First Name: </strong><span class="capitalize"> {firstName}</span></p>
+		<p><strong>Last Name: </strong> <span class="capitalize"> {lastName}</span></p>
+		<p><strong>Phone:</strong> {phone}</p>
+		<p><strong>Country:</strong> {country}</p>
+		<p><strong>Date Created:</strong> {createdAt}</p>
+		<p><strong>Last Access Time:</strong> {lastAccessTime}</p>
+		<p><strong>Ip Address:</strong> {ipAddress}</p>
+	</div>
+	<a href="/users"> <Button>Back</Button></a>
 </div>
 
 <style>
+	.page-container {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 2rem;
+	}
 	.user-container {
 		display: flex;
 		flex-direction: column;

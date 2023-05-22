@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Pagination from '$lib/Pagination/Pagination.svelte';
+	import { fly } from 'svelte/transition';
 	import UserCard from './UserCard.svelte';
 	export let data;
 	let pageSize = 10;
