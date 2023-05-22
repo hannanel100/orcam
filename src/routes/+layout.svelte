@@ -5,9 +5,9 @@
 
 <div>
 	<Header />
-	<div>
+	<main>
 		<slot />
-	</div>
+	</main>
 </div>
 
 <style>
@@ -19,6 +19,10 @@
 	}
 	div {
 		font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	}
+	main {
+		max-width: 975px;
+		margin: 0 auto;
 	}
 	@media (max-width: 768px) {
 		:global(body) {

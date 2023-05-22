@@ -23,7 +23,6 @@
 		flex-direction: column;
 		align-items: center;
 		width: 90%;
-		max-width: 975px;
 		gap: 1rem;
 		margin: auto;
 	}
