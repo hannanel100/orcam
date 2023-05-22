@@ -88,6 +88,10 @@
 
 		border-radius: 5px;
 	}
+	.pagination-container a:hover {
+		background-color: #000;
+		color: #fff;
+	}
 	/* class to highlight current page*/
 	.pagination-container a.active {
 		background-color: #000;
