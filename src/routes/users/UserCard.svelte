@@ -15,12 +15,12 @@
 		{#if user.firstName}
 			<p class="firstName">{firstName}</p>
 		{:else}
-			<p class="firstName">no first name</p>
+			<p class="firstName">First Name N/A</p>
 		{/if}
 		{#if user.lastName}
 			<p class="lastName">{lastName}</p>
 		{:else}
-			<p class="lastName">no last name</p>
+			<p class="lastName">Last Name N/A</p>
 		{/if}
 	</div>
 	<div class="right-container">
@@ -92,7 +92,7 @@
 			gap: 0.5rem;
 			overflow: hidden;
 			white-space: nowrap;
-			padding: 0 0.5rem;
+			padding: 0;
 		}
 		.users-card .firstName,
 		.users-card .lastName {
@@ -100,9 +100,6 @@
 		}
 		.email {
 			font-size: var(--font-size-xxs);
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
 		}
 		.createdAt {
 			display: none;
