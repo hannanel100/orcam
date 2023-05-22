@@ -26,6 +26,14 @@
 			>
 		{/if}
 	{/each}
+	<!-- last page, if not currently on it or within range to show it -->
+	{#if currentPage < totalPages - 5}
+		<span>...</span>
+		<a href={`/users?page=${totalPages}&limit=${pageSize}`} class="tooltip"
+			>{totalPages}
+			<span class="tooltiptext">Last page</span></a
+		>
+	{/if}
 	<!-- add an arrow if not in the end of the list, arrow will skip 10 pages -->
 	{#if currentPage + 10 < totalPages}
 		<a href={`/users?page=${currentPage + 10}&limit=${pageSize}`} class="tooltip"
@@ -57,7 +65,7 @@
 		place-items: center;
 		width: 2rem;
 		height: 2rem;
-		border: 1px solid #000;
+
 		border-radius: 5px;
 	}
 	/* class to highlight current page*/
@@ -68,7 +76,6 @@
 	.tooltip {
 		position: relative;
 		display: inline-block;
-		border-bottom: 1px dotted black;
 	}
 
 	.tooltip .tooltiptext {
@@ -89,5 +96,11 @@
 
 	.tooltip:hover .tooltiptext {
 		visibility: visible;
+	}
+	@media (max-width: 768px) {
+		.pagination-container a {
+			width: 1rem;
+			height: 1rem;
+		}
 	}
 </style>

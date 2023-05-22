@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Pagination from '$lib/Pagination/Pagination.svelte';
-	import { fly } from 'svelte/transition';
 	import UserCard from './UserCard.svelte';
 	export let data;
 	let pageSize = 10;
 	$: totalItems = data?.total;
-	$: totalPages = Math.ceil(totalItems / pageSize);
+	$: totalPages = Math.ceil(totalItems / pageSize) - 1;
 	$: currentPage = Number($page.url.searchParams.get('page')) || 1;
 </script>
 

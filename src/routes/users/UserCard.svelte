@@ -3,7 +3,6 @@
 	import type { User } from '$lib/types/';
 
 	export let user: User;
-	console.log({ user });
 	let { firstName, lastName, email, createdAt } = user;
 	// format createdAt to be more readable, in dd/mm/yyyy format using the Intl.DateTimeFormat
 	createdAt = new Intl.DateTimeFormat('en-GB').format(new Date(createdAt));
