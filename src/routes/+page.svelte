@@ -10,13 +10,28 @@
 
 <style>
 	h1 {
-		text-align: center;
-		font-weight: 700;
-		font-size: 4rem;
-		background: linear-gradient(to right, black, grey);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+		/* radial-gradient(108.75% 282.12% at -3.33% 0%, #236cff 0%, #0044ce 100%); */
+		--bg-size: 400%;
+		--color-one: #236cff;
+		--color-two: #0044ce;
+		font-size: clamp(2rem, 15vmin, 6rem);
+		background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
+			var(--bg-size) 100%;
+		color: transparent;
 		background-clip: text;
+		-webkit-background-clip: text;
+		animation: move-bg 8s infinite linear;
+		text-align: center;
+	}
+	@media (prefers-reduced-motion: no-preference) {
+		h1 {
+			animation: move-bg 8s linear infinite;
+		}
+		@keyframes move-bg {
+			to {
+				background-position: var(--bg-size) 0;
+			}
+		}
 	}
 	main {
 		margin: 0 auto;

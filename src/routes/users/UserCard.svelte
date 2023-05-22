@@ -115,6 +115,16 @@
 			display: block;
 		}
 		@media (max-width: 480px) {
+			.users-card {
+				grid-template-columns: 1fr;
+				grid-template-rows: 1fr 1fr;
+			}
+			.left-container,
+			.right-container {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+			}
 			.email {
 				width: 10rem;
 			}

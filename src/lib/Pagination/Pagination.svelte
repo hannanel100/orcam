@@ -74,6 +74,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-wrap: wrap;
 		gap: 1rem;
 		padding-top: 4rem;
 		padding-bottom: 4rem;
@@ -87,6 +88,7 @@
 		height: 2rem;
 
 		border-radius: 5px;
+		transition: all 0.2s ease-in-out;
 	}
 	.pagination-container a:hover {
 		background-color: #000;

@@ -17,7 +17,7 @@
 <style>
 	.btn {
 		border: none;
-		border-radius: 0.25rem;
+		border-radius: 1.25rem;
 		padding: 0.5rem 1rem;
 		font-size: var(--font-size);
 		cursor: pointer;
