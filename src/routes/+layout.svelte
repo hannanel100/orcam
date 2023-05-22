@@ -16,5 +16,6 @@
 	}
 	div {
 		font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+		background-color: #fff;
 	}
 </style>
