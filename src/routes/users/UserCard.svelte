@@ -4,9 +4,8 @@
 
 	export let user: User;
 	let { firstName, lastName, email, createdAt } = user;
-	// format createdAt to be more readable, in dd/mm/yyyy format using the Intl.DateTimeFormat
 	createdAt = new Intl.DateTimeFormat('en-GB').format(new Date(createdAt));
-	console.log('🚀 ~ file: UserCard.svelte:9 ~ createdAt:', createdAt);
+	let text = 'more';
 </script>
 
 <div class="users-card">
@@ -41,7 +40,8 @@
 			{/if}
 		</div>
 		<div>
-			<Button><a href="/users/{user.userId}" data-sveltekit-preload-data="hover">details</a></Button
+			<Button size="lg" onMouseover={() => (text = 'details')} onMouseleave={() => (text = 'more')}
+				><a href="/users/{user.userId}" data-sveltekit-preload-data="hover">{text}</a></Button
 			>
 		</div>
 	</div>

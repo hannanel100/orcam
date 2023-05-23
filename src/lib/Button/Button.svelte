@@ -4,13 +4,26 @@
 		variant?: Variant;
 		disabled?: boolean;
 		onClick?: () => void;
+		onMouseover?: () => void;
+		onMouseleave?: () => void;
+		size?: 'sm' | 'md' | 'lg' | 'default';
 	};
 	export let variant: ButtonProps['variant'] = 'primary';
 	export let disabled: ButtonProps['disabled'] = false;
 	export let onClick: ButtonProps['onClick'] = () => {};
+	export let onMouseover: ButtonProps['onMouseover'] = () => {};
+	export let onMouseleave: ButtonProps['onMouseleave'] = () => {};
+	export let size: ButtonProps['size'] = 'default';
 </script>
 
-<button class={`btn ${variant}`} on:click={onClick} {disabled}>
+<button
+	class={`btn ${variant} ${size}`}
+	on:click={onClick}
+	{disabled}
+	on:mouseover={onMouseover}
+	on:mouseleave={onMouseleave}
+	on:focus={() => console.log('hover')}
+>
 	<slot>Button</slot>
 </button>
 
@@ -37,5 +50,14 @@
 	.btn:hover {
 		opacity: 0.8;
 		color: var(--accent-color);
+	}
+	.btn.sm {
+		width: 60px;
+	}
+	.btn.md {
+		width: 80px;
+	}
+	.btn.lg {
+		width: 100px;
 	}
 </style>
