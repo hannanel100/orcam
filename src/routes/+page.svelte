@@ -10,7 +10,6 @@
 
 <style>
 	h1 {
-		/* radial-gradient(108.75% 282.12% at -3.33% 0%, #236cff 0%, #0044ce 100%); */
 		--bg-size: 400%;
 		--color-one: #236cff;
 		--color-two: #0044ce;
