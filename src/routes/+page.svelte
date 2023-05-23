@@ -1,3 +1,7 @@
+<script>
+	import Button from '$lib/Button/Button.svelte';
+</script>
+
 <h1>Hannanel Gershinsky</h1>
 
 <main>
@@ -6,6 +10,17 @@
 		I had a great time working on this, getting to know svelte and sveltekit was definitely on my
 		radar, so thanks for the opportunity!
 	</p>
+	<div class="link-container">
+		<Button>
+			<a href="/users" data-sveltekit-preload-data="hover">users</a>
+		</Button>
+		<Button>
+			<a href="/about" data-sveltekit-preload-data="hover">about</a>
+		</Button>
+		<Button>
+			<a href="https://www.github.com/hannanel100/orcam">Github</a>
+		</Button>
+	</div>
 </main>
 
 <style>
@@ -36,5 +51,23 @@
 		margin: 0 auto;
 		max-width: 960px;
 		padding: 0 1rem;
+	}
+	main p {
+		font-size: clamp(1rem, 5vmin, 1.5rem);
+		line-height: 1.5;
+	}
+	main a {
+		text-decoration: none;
+		color: #fff;
+	}
+	main a:hover {
+		color: var(--accent-color);
+	}
+	.link-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1rem;
 	}
 </style>
