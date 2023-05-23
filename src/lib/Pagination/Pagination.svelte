@@ -1,4 +1,7 @@
-<script>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { totalPages, currentPage, pageSize } from '$lib/stores/pages';
+	import { page } from '$app/stores';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import {
 		faArrowLeft,
@@ -6,9 +9,12 @@
 		faArrowRight,
 		faArrowRightLong
 	} from '@fortawesome/free-solid-svg-icons';
-	export let currentPage = 1;
-	export let pageSize = 10;
-	export let totalPages = 0;
+	$totalPages;
+	$currentPage;
+	$pageSize;
+	export let totalItems: number;
+	$: totalPages.set(Math.ceil(totalItems / $pageSize) - 1);
+	$: currentPage.set(Number($page.url.searchParams.get('page')) || 1);
 	let numOfPagesLinks = 5;
 	let innerWidth = 0;
 	$: {
@@ -18,51 +24,65 @@
 			numOfPagesLinks = 5;
 		}
 	}
+	function reloadPage() {
+		goto(`/users?page=${$currentPage}&limit=${$pageSize}`);
+	}
 </script>
 
-<svelte:window bind:innerWidth />
-
+<svelte:window bind:innerWidth on:change={reloadPage} />
+<select bind:value={$pageSize} on:change={() => pageSize.set($pageSize)}>
+	{#each [10, 20, 50, 100] as _, i}
+		<option value={_}>{_}</option>
+	{/each}
+</select>
 <div class="pagination-container">
-	{#if currentPage - 50 > 0}
-		<a href={`/users?page=${currentPage - 50}&limit=${pageSize}`} class="tooltip">
+	{#if $currentPage - 50 > 0}
+		<a href={`/users?page=${$currentPage - 50}&limit=${$pageSize}`} class="tooltip">
 			<Fa icon={faArrowLeftLong} />
 
 			<span class="tooltiptext">Back 50 pages</span></a
 		>
 	{/if}
-	{#if currentPage - 10 > 0}
-		<a href={`/users?page=${currentPage - 10}&limit=${pageSize}`} class="tooltip">
+	{#if $currentPage - 10 > 0}
+		<a href={`/users?page=${$currentPage - 10}&limit=${$pageSize}`} class="tooltip">
 			<Fa icon={faArrowLeft} />
 			<span class="tooltiptext">Back 10 pages</span></a
 		>
 	{/if}
-	{#each Array.from({ length: totalPages }) as _, i}
+	{#if $currentPage > 5}
+		<a href={`/users?page=1&limit=${$pageSize}`} class="tooltip"
+			>1
+			<span class="tooltiptext">First page</span></a
+		>
+		<span>...</span>
+	{/if}
+	{#each Array.from({ length: $totalPages }) as _, i}
 		<!-- only show the previous 5 if they exist and the next five if they exist -->
-		{#if i + 1 >= currentPage - numOfPagesLinks && i + 1 <= currentPage + numOfPagesLinks}
+		{#if i + 1 >= $currentPage - numOfPagesLinks && i + 1 <= $currentPage + numOfPagesLinks}
 			<a
-				href={`/users?page=${i + 1}&limit=${pageSize}`}
+				href={`/users?page=${i + 1}&limit=${$pageSize}`}
 				data-sveltekit-preload-data="hover"
-				class={`${currentPage === i + 1 ? 'active' : ''}`}>{i + 1}</a
+				class={`${$currentPage === i + 1 ? 'active' : ''}`}>{i + 1}</a
 			>
 		{/if}
 	{/each}
 	<!-- last page, if not currently on it or within range to show it -->
-	{#if currentPage < totalPages - 5}
+	{#if $currentPage < $totalPages - 5}
 		<span>...</span>
-		<a href={`/users?page=${totalPages}&limit=${pageSize}`} class="tooltip"
-			>{totalPages}
+		<a href={`/users?page=${$totalPages}&limit=${$pageSize}`} class="tooltip"
+			>{$totalPages}
 			<span class="tooltiptext">Last page</span></a
 		>
 	{/if}
 	<!-- add an arrow if not in the end of the list, arrow will skip 10 pages -->
-	{#if currentPage + 10 < totalPages}
-		<a href={`/users?page=${currentPage + 10}&limit=${pageSize}`} class="tooltip">
+	{#if $currentPage + 10 < $totalPages}
+		<a href={`/users?page=${$currentPage + 10}&limit=${$pageSize}`} class="tooltip">
 			<Fa icon={faArrowRight} />
 			<span class="tooltiptext">Skip 10 pages</span></a
 		>
 	{/if}
-	{#if currentPage + 50 < totalPages}
-		<a href={`/users?page=${currentPage + 50}&limit=${pageSize}`} class="tooltip">
+	{#if $currentPage + 50 < $totalPages}
+		<a href={`/users?page=${$currentPage + 50}&limit=${$pageSize}`} class="tooltip">
 			<Fa icon={faArrowRightLong} />
 			<span class="tooltiptext">Skip 50 pages</span></a
 		>

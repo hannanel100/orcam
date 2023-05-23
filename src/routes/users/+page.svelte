@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import Pagination from '$lib/Pagination/Pagination.svelte';
 	import UserCard from './UserCard.svelte';
+
 	export let data;
 	console.log('🚀 ~ file: +page.svelte:6 ~ data:', data);
-	let pageSize = 10;
 	$: totalItems = data?.total;
-	$: totalPages = Math.ceil(totalItems / pageSize) - 1;
-	$: currentPage = Number($page.url.searchParams.get('page')) || 1;
+	// if no data, then go to page 1
+	$: if (data.items.length === 0) {
+		goto('/users?page=1&limit=10');
+	}
 </script>
 
 <div class="users-container">
@@ -16,7 +19,7 @@
 		<UserCard {user} />
 	{/each}
 </div>
-<Pagination {currentPage} {pageSize} {totalPages} />
+<Pagination {totalItems} />
 
 <style>
 	.users-container {
