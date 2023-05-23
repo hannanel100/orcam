@@ -8,6 +8,7 @@ This repository contains the solution for the Orcam Home Task implemented using 
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Features](#features)
+  - [Technologies](#technologies)
   - [Getting Started](#getting-started)
   - [Usage](#usage)
   - [APIs](#apis)
@@ -25,6 +26,12 @@ The Orcam Home Task Sveltkit App offers the following features:
 2. User Details: Fetches and displays the details of a selected user using the Fetch User Details API.
 3. Routing: Utilizes the Svelte Router for seamless navigation between pages.
 4. About Page: Presents information about the application.
+
+## Technologies
+
+1. Svelte
+2. Sveltkit
+3. Typescript
 
 ## Getting Started
 
