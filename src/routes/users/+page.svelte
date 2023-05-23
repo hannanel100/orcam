@@ -5,7 +5,6 @@
 	import UserCard from './UserCard.svelte';
 
 	export let data;
-	console.log('🚀 ~ file: +page.svelte:6 ~ data:', data);
 	$: totalItems = data?.total;
 	// if no data, then go to page 1
 	$: if (data.items.length === 0) {

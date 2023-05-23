@@ -30,74 +30,94 @@
 </script>
 
 <svelte:window bind:innerWidth on:change={reloadPage} />
-<select bind:value={$pageSize} on:change={() => pageSize.set($pageSize)}>
-	{#each [10, 20, 50, 100] as _, i}
-		<option value={_}>{_}</option>
-	{/each}
-</select>
-<div class="pagination-container">
-	{#if $currentPage - 50 > 0}
-		<a href={`/users?page=${$currentPage - 50}&limit=${$pageSize}`} class="tooltip">
-			<Fa icon={faArrowLeftLong} />
+<div class="pagination-select-container">
+	<select bind:value={$pageSize} on:change={() => pageSize.set($pageSize)}>
+		{#each [10, 20, 50, 100] as _, i}
+			<option value={_}>{_}</option>
+		{/each}
+	</select>
+	<div class="pagination-container">
+		{#if $currentPage - 50 > 0}
+			<a href={`/users?page=${$currentPage - 50}&limit=${$pageSize}`} class="tooltip">
+				<Fa icon={faArrowLeftLong} />
 
-			<span class="tooltiptext">Back 50 pages</span></a
-		>
-	{/if}
-	{#if $currentPage - 10 > 0}
-		<a href={`/users?page=${$currentPage - 10}&limit=${$pageSize}`} class="tooltip">
-			<Fa icon={faArrowLeft} />
-			<span class="tooltiptext">Back 10 pages</span></a
-		>
-	{/if}
-	{#if $currentPage > 5}
-		<a href={`/users?page=1&limit=${$pageSize}`} class="tooltip"
-			>1
-			<span class="tooltiptext">First page</span></a
-		>
-		<span>...</span>
-	{/if}
-	{#each Array.from({ length: $totalPages }) as _, i}
-		<!-- only show the previous 5 if they exist and the next five if they exist -->
-		{#if i + 1 >= $currentPage - numOfPagesLinks && i + 1 <= $currentPage + numOfPagesLinks}
-			<a
-				href={`/users?page=${i + 1}&limit=${$pageSize}`}
-				data-sveltekit-preload-data="hover"
-				class={`${$currentPage === i + 1 ? 'active' : ''}`}>{i + 1}</a
+				<span class="tooltiptext">Back 50 pages</span></a
 			>
 		{/if}
-	{/each}
-	<!-- last page, if not currently on it or within range to show it -->
-	{#if $currentPage < $totalPages - 5}
-		<span>...</span>
-		<a href={`/users?page=${$totalPages}&limit=${$pageSize}`} class="tooltip"
-			>{$totalPages}
-			<span class="tooltiptext">Last page</span></a
-		>
-	{/if}
-	<!-- add an arrow if not in the end of the list, arrow will skip 10 pages -->
-	{#if $currentPage + 10 < $totalPages}
-		<a href={`/users?page=${$currentPage + 10}&limit=${$pageSize}`} class="tooltip">
-			<Fa icon={faArrowRight} />
-			<span class="tooltiptext">Skip 10 pages</span></a
-		>
-	{/if}
-	{#if $currentPage + 50 < $totalPages}
-		<a href={`/users?page=${$currentPage + 50}&limit=${$pageSize}`} class="tooltip">
-			<Fa icon={faArrowRightLong} />
-			<span class="tooltiptext">Skip 50 pages</span></a
-		>
-	{/if}
+		{#if $currentPage - 10 > 0}
+			<a href={`/users?page=${$currentPage - 10}&limit=${$pageSize}`} class="tooltip">
+				<Fa icon={faArrowLeft} />
+				<span class="tooltiptext">Back 10 pages</span></a
+			>
+		{/if}
+		{#if $currentPage > 5}
+			<a href={`/users?page=1&limit=${$pageSize}`} class="tooltip"
+				>1
+				<span class="tooltiptext">First page</span></a
+			>
+			<span>...</span>
+		{/if}
+		{#each Array.from({ length: $totalPages }) as _, i}
+			<!-- only show the previous 5 if they exist and the next five if they exist -->
+			{#if i + 1 >= $currentPage - numOfPagesLinks && i + 1 <= $currentPage + numOfPagesLinks}
+				<a
+					href={`/users?page=${i + 1}&limit=${$pageSize}`}
+					data-sveltekit-preload-data="hover"
+					class={`${$currentPage === i + 1 ? 'active' : ''}`}>{i + 1}</a
+				>
+			{/if}
+		{/each}
+		<!-- last page, if not currently on it or within range to show it -->
+		{#if $currentPage < $totalPages - 5}
+			<span>...</span>
+			<a href={`/users?page=${$totalPages}&limit=${$pageSize}`} class="tooltip"
+				>{$totalPages}
+				<span class="tooltiptext">Last page</span></a
+			>
+		{/if}
+		<!-- add an arrow if not in the end of the list, arrow will skip 10 pages -->
+		{#if $currentPage + 10 < $totalPages}
+			<a href={`/users?page=${$currentPage + 10}&limit=${$pageSize}`} class="tooltip">
+				<Fa icon={faArrowRight} />
+				<span class="tooltiptext">Skip 10 pages</span></a
+			>
+		{/if}
+		{#if $currentPage + 50 < $totalPages}
+			<a href={`/users?page=${$currentPage + 50}&limit=${$pageSize}`} class="tooltip">
+				<Fa icon={faArrowRightLong} />
+				<span class="tooltiptext">Skip 50 pages</span></a
+			>
+		{/if}
+	</div>
 </div>
 
 <style>
-	.pagination-container {
+	.pagination-select-container {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		flex-wrap: wrap;
 		gap: 1rem;
 		padding-top: 4rem;
 		padding-bottom: 4rem;
+	}
+	.pagination-select-container select {
+		padding: 0.5rem 1rem;
+		border-radius: 5px;
+		background-color: #000;
+		color: #fff;
+		border: none;
+	}
+	.pagination-select-container select:hover {
+		color: var(--secondary-accent-color);
+	}
+	.pagination-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1rem;
 	}
 	.pagination-container a {
 		text-decoration: none;
