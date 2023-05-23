@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-
 	import AnimatedHamburger from './Hamburger.svelte';
 	import Button from '$lib/Button/Button.svelte';
-
+	import { page } from '$app/stores';
 	export let open = false;
 	export let onClick = (): void => {
 		open = !open;
@@ -23,11 +22,15 @@
 		</div>
 		{#if open}
 			<nav class="mobile-nav" transition:fly={{ y: -200, duration: 400 }}>
-				<a href="/" on:click={onClick}>Home</a>
+				<a href="/" on:click={onClick} class={`${$page.url.pathname === '/' && 'active'}`}>Home</a>
 				<div class="spacer" />
-				<a href="/users" on:click={onClick}>Users</a>
+				<a href="/users" on:click={onClick} class={`${$page.url.pathname === '/users' && 'active'}`}
+					>Users</a
+				>
 				<div class="spacer" />
-				<a href="/about" on:click={onClick}>About</a>
+				<a href="/about" on:click={onClick} class={`${$page.url.pathname === '/about' && 'active'}`}
+					>About</a
+				>
 				<div class="spacer" />
 			</nav>
 		{/if}
@@ -40,8 +43,8 @@
 			<a href="https://www.hannanel.dev">Check me out!</a>
 		</Button>
 		<nav class="desktop-nav">
-			<a href="/users">Users</a>
-			<a href="/about">About</a>
+			<a href="/users" class={`${$page.url.pathname === '/users' && 'active'}`}>Users</a>
+			<a href="/about" class={`${$page.url.pathname === '/about' && 'active'}`}>About</a>
 		</nav>
 	</div>
 </header>
@@ -50,7 +53,6 @@
 	:root {
 		--white: #fff;
 		--black: #000;
-		--accent-color: #ff6f61;
 		--font-size: 1rem;
 	}
 	a {
@@ -68,6 +70,10 @@
 	.logo {
 		width: 6rem;
 		aspect-ratio: auto;
+	}
+	.desktop-nav .active,
+	.mobile-nav .active {
+		color: var(--accent-color);
 	}
 	.mobile-header {
 		position: relative;
