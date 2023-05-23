@@ -73,7 +73,7 @@
 	}
 	.desktop-nav .active,
 	.mobile-nav .active {
-		color: var(--accent-color);
+		color: var(--secondary-accent-color);
 	}
 	.mobile-header {
 		position: relative;
