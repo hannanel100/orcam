@@ -15,7 +15,7 @@
 		margin: 0;
 		height: 100vh;
 		background-color: #fbfbfd;
-		--accent-color: #ff6f61;
+		--accent-color: #236cff;
 	}
 	div {
 		font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
