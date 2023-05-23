@@ -14,10 +14,10 @@ export interface User {
 	createdAt: string;
 	updatedAt: string;
 	sfAccountId: string | null;
-	consent: any; // Replace 'any' with the actual type if known
+	consent: string | null;
 	rootAccountId: string;
 	role: string | null;
 	needConsent: boolean;
 	loginToken: string;
-	details: any[]; // Replace 'any' with the actual type if known
+	details: string[];
 }

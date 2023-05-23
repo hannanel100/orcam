@@ -1,6 +1,6 @@
 <script lang="ts">
-	// if property is null, return string 'N/A'
-	import Button from '$lib/Button/Button.svelte';
+	import type { ComponentProps } from 'svelte';
+
 	import SingleUserCard from '$lib/SingleUserCard/SingleUserCard.svelte';
 	import type { PageData } from './$types';
 	const formatData = (property: string | null) => {
@@ -23,10 +23,12 @@
 			day: 'numeric'
 		});
 	};
-
 	export let data: PageData;
+	console.log('🚀 ~ file: +page.svelte:27 ~ data:', data);
 
 	interface Data {
+		userId: string;
+		hash: string;
 		createdAt: string;
 		email: string;
 		firstName: string;
@@ -35,9 +37,20 @@
 		phone: string;
 		ipAddress: string;
 		lastAccessTime: string;
+		identityId: string;
+		customVersion: string;
+		updatedAt: string;
+		sfAccountId: string;
+		consent: string;
+		rootAccountId: string;
+		role: string;
+		needConsent: boolean;
+		loginToken: string;
 	}
 	// format data
-	const formattedData: Data = {
+	export const formattedData: Data = {
+		userId: formatData(data.userId),
+		hash: formatData(data.hash),
 		createdAt: formatDate(data.createdAt),
 		email: formatData(data.email),
 		firstName: formatData(data.firstName),
@@ -45,26 +58,22 @@
 		country: formatData(data.country),
 		phone: formatData(data.phone),
 		ipAddress: formatData(data.ipAddress),
-		lastAccessTime: formatDate(data.lastAccessTime, true)
+		lastAccessTime: formatDate(data.lastAccessTime, true),
+		identityId: formatData(data.identityId),
+		customVersion: formatData(data.customVersion),
+		updatedAt: formatDate(data.updatedAt, true),
+		sfAccountId: formatData(data.sfAccountId),
+		consent: formatData(data.consent),
+		rootAccountId: formatData(data.rootAccountId),
+		role: formatData(data.role),
+		needConsent: data.needConsent,
+		loginToken: formatData(data.loginToken)
 	};
-
-	const { createdAt, email, firstName, lastName, country, phone, ipAddress, lastAccessTime } =
-		formattedData;
 </script>
 
 <div class="page-container">
-	<!-- <div class="user-container">
-		<p><strong>Email:</strong> {email}</p>
-		<p><strong>First Name: </strong><span class="capitalize"> {firstName}</span></p>
-		<p><strong>Last Name: </strong> <span class="capitalize"> {lastName}</span></p>
-		<p><strong>Phone:</strong> {phone}</p>
-		<p><strong>Country:</strong> {country}</p>
-		<p><strong>Date Created:</strong> {createdAt}</p>
-		<p><strong>Last Access Time:</strong> {lastAccessTime}</p>
-		<p><strong>Ip Address:</strong> {ipAddress}</p>
-	</div> -->
-	<SingleUserCard data={formattedData} />
-	<a href="/users"> <Button>Back</Button></a>
+	
+	<SingleUserCard {formattedData} />
 </div>
 
 <style>
