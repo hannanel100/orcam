@@ -1,10 +1,58 @@
 <!-- about page -->
 
-<h1>About</h1>
+<h1>About Me and Orcam's Home Task</h1>
+<p>Hey there!</p>
 <p>
-	Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quibusdam, voluptatum, quia,
-	quos voluptatem voluptas quod aspernatur quas voluptatibus doloribus quidem. Quisquam quibusdam,
-	voluptatum, quia, quos voluptatem voluptas quod aspernatur quas voluptatibus doloribus quidem.
+	I'm excited to share my solution to the Orcam Home Task. This opportunity allowed me to dive into
+	the world of Sveltkit and build something awesome!
 </p>
-
-
+<h2>My Journey with Svelte and Sveltekit</h2>
+<p>
+	During this task, I had the chance to explore Sveltkit, a fantastic framework for developing web
+	applications. Let me tell you, I fell in love with it! Svelte's simplicity and elegance truly won
+	me over. It made building the Orcam Home Task Sveltkit App a breeze. Uptill now, my go to
+	framework was Next.js, but I think I'm going to be using Sveltekit a lot more now, moving forward!
+</p>
+<h2>A Great Opportunity</h2>
+<p>
+	Taking on this task was an amazing opportunity for me. Not only did I get to demonstrate my skills
+	and creativity, but I also got to learn and grow as a developer. It was a chance to showcase my
+	ability to build a single-page application, handle routing, and integrate APIs seamlessly.
+</p>
+<h2>Features of the Orcam Home Task Sveltkit App</h2>
+<p>The Orcam Home Task Sveltkit App offers some cool features that I'm proud of:</p>
+<ul>
+	<li>
+		<p>
+			<strong>Users List</strong>: Explore a paginated list of users with ease. You can see their
+			basic information, like their names and email addresses. Feel free to click on any user to
+			view their detailed information.
+		</p>
+	</li>
+	<li>
+		<p>
+			<strong>User Details</strong>: Get to know users on a deeper level by diving into their
+			details. Discover their address, phone number, and registration date. The Fetch User Details
+			API makes sure you get the most up-to-date information.
+		</p>
+	</li>
+	<li>
+		<p>
+			<strong>Routing</strong>: Enjoy a smooth and intuitive navigation experience within the app.
+			The Sveltekit Router allows you to seamlessly move between the Users List and User Details
+			pages.
+		</p>
+	</li>
+	<li>
+		<p>
+			<strong>About Page</strong>: Learn more about the Orcam Home Task and its creation.
+		</p>
+	</li>
+</ul>
+<h2>A Thank You to Orcam</h2>
+<p>
+	I want to express my gratitude to Orcam for providing me with this task. It was a fantastic
+	opportunity to showcase my skills and passion for web development. I thoroughly enjoyed working on
+	the Orcam Home Task Sveltkit App and look forward to further challenges.
+</p>
+<p>Thank you for considering my solution!</p>
