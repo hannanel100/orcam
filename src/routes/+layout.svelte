@@ -21,7 +21,7 @@
 		font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 	}
 	main {
-		max-width: 975px;
+		max-width: 1080px;
 		margin: 0 auto;
 	}
 	@media (max-width: 768px) {

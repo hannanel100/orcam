@@ -3,6 +3,7 @@
 	import Pagination from '$lib/Pagination/Pagination.svelte';
 	import UserCard from './UserCard.svelte';
 	export let data;
+	console.log('🚀 ~ file: +page.svelte:6 ~ data:', data);
 	let pageSize = 10;
 	$: totalItems = data?.total;
 	$: totalPages = Math.ceil(totalItems / pageSize) - 1;

@@ -24,8 +24,21 @@
 	</div>
 	<div class="right-container">
 		<div class="email-date-container">
-			<p class="email">{email}</p>
-			<p class="createdAt">{createdAt}</p>
+			{#if user.email}
+				<p class="email">{email}</p>
+			{:else}
+				<p class="email">Email N/A</p>
+			{/if}
+			{#if user.createdAt}
+				<p class="createdAt">{createdAt}</p>
+			{:else}
+				<p class="createdAt">Created At N/A</p>
+			{/if}
+			{#if user.createdAt}
+				<p class="createdAt">{createdAt}</p>
+			{:else}
+				<p class="createdAt">Created At N/A</p>
+			{/if}
 		</div>
 		<div>
 			<Button><a href="/users/{user.userId}" data-sveltekit-preload-data="hover">details</a></Button
