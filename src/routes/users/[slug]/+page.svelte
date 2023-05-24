@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ComponentProps } from 'svelte';
 
-	import SingleUserCard from '$lib/SingleUserCard/SingleUserCard.svelte';
+	import SingleUserCard from '$lib/single-user-card/SingleUserCard.svelte';
 	import type { PageData } from './$types';
 	const formatData = (property: string | null) => {
 		return property ? property : 'N/A';
@@ -24,7 +24,6 @@
 		});
 	};
 	export let data: PageData;
-	console.log('🚀 ~ file: +page.svelte:27 ~ data:', data);
 
 	interface Data {
 		userId: string;
@@ -72,7 +71,6 @@
 </script>
 
 <div class="page-container">
-	
 	<SingleUserCard {formattedData} />
 </div>
 
