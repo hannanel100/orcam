@@ -10,6 +10,10 @@
 		I had a great time working on this, getting to know svelte and sveltekit was definitely on my
 		radar, so thanks for the opportunity!
 	</p>
+	<p>
+		The design of the application is heavily inspired by orcams website. I even "stole" some of your
+		colors...
+	</p>
 	<div class="link-container">
 		<Button>
 			<a href="/users" data-sveltekit-preload-data="hover">users</a>
