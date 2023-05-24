@@ -11,9 +11,9 @@
 
 <header class="header">
 	<div class="mobile-header">
-		<Button variant="secondary">
-			<a href="https://www.hannanel.dev">Check me out!</a>
-		</Button>
+		<a href="https://www.hannanel.dev">
+			<Button variant="secondary">Check me out!</Button>
+		</a>
 		<a href="/">
 			<img src="/logo.png" alt="logo" class="logo" />
 		</a>
@@ -39,9 +39,9 @@
 		<a href="/">
 			<img src="/logo.png" alt="logo" class="logo" />
 		</a>
-		<Button variant="secondary">
-			<a href="https://www.hannanel.dev">Check me out!</a>
-		</Button>
+		<a href="https://www.hannanel.dev">
+			<Button variant="secondary">Check me out!</Button>
+		</a>
 		<nav class="desktop-nav">
 			<a href="/users" class={`${$page.url.pathname === '/users' && 'active'}`}>Users</a>
 			<a href="/about" class={`${$page.url.pathname === '/about' && 'active'}`}>About</a>
