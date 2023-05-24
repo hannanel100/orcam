@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { ComponentProps } from 'svelte';
-
 	import SingleUserCard from '$lib/single-user-card/SingleUserCard.svelte';
 	import type { PageData } from './$types';
 	const formatData = (property: string | null) => {
@@ -80,32 +78,5 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 2rem;
-	}
-	.user-container {
-		display: flex;
-		flex-direction: column;
-		background-color: #fff;
-		border: 1px solid rgb(99, 96, 96);
-		border-radius: 5px;
-		padding: 1rem;
-		box-shadow: 4px 4px 13px 0px rgba(135, 130, 130, 0.75);
-		-webkit-box-shadow: 4px 4px 13px 0px rgba(135, 130, 130, 0.75);
-		-moz-box-shadow: 4px 4px 13px 0px rgba(135, 130, 130, 0.75);
-	}
-	.capitalize {
-		text-transform: capitalize;
-	}
-	.user-container p strong {
-		font-weight: 700;
-	}
-	@media (min-width: 768px) {
-		.user-container {
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: space-between;
-		}
-		.user-container p {
-			width: 48%;
-		}
 	}
 </style>
