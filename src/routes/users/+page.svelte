@@ -1,20 +1,22 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import Pagination from '$lib/pagination/Pagination.svelte';
+	import Pagination from '$lib/Pagination/Pagination.svelte';
 	import UserCard from './UserCard.svelte';
-
+	import { users } from '$lib/stores/users';
 	export let data;
+	$users;
+	$: data.items && users.set([...data.items]);
+	$: console.log('🚀 ~ file: +page.svelte:8 ~ users:', $users);
 	$: totalItems = data?.total;
 	// if no data, then go to page 1
-	$: if (data.items.length === 0) {
+	$: if ($users.length === 0) {
 		goto('/users?page=1&limit=10');
 	}
 </script>
 
 <div class="users-container">
 	<h1>Users</h1>
-	{#each data.items as user}
+	{#each $users as user}
 		<UserCard {user} />
 	{/each}
 </div>
