@@ -1,13 +1,13 @@
 <script>
-	import Button from '$lib/button/Button.svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
+	import Button from '$lib/button/Button.svelte';
 </script>
 
 <div class="container">
 	<div class="title-container">
 		<h1>Single User Page</h1>
-		<a href="/users"> <Button><Fa icon={faCaretLeft} />Back</Button></a>
+		<a href={`/users`}> <Button><Fa icon={faCaretLeft} />Back</Button></a>
 	</div>
 	<slot />
 </div>
