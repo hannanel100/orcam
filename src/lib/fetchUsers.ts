@@ -24,8 +24,5 @@ export async function fetchUsers(
 		}
 	});
 	const data: Data = await response.json();
-	console.log('🚀 ~ file: fetchUsers.ts:23 ~ sort:', sort);
-
-	console.log('🚀 ~ file: fetchUsers.ts:30 ~ data:', data);
 	return data;
 }

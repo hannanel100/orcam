@@ -14,7 +14,7 @@
 	$: if ($users.length === 0) {
 		goto('/users?page=1&limit=10&sort=email:asc');
 	}
-	$: console.log($sort);
+
 	function reloadPage() {
 		goto(`/users?page=${$currentPage}&limit=${$pageSize}&sort=${$sort}`);
 	}

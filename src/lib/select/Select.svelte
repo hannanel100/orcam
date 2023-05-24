@@ -7,7 +7,6 @@
 	export let options: Option[] = [];
 	export let onChange = () => {};
 	export let value: string | number;
-	$: console.log(options.filter((option) => option.selected));
 </script>
 
 <select bind:value on:change={onChange} class="select">
