@@ -7,7 +7,9 @@ export const load = (async ({ fetch, url }) => {
 
 	const page = Number(url.searchParams.get('page')) || 0;
 
-	const data = await fetchUsers(limit, page, fetch);
+	const sort = url.searchParams.get('sort') || 'email:desc';
+
+	const data = await fetchUsers(limit, page, sort, fetch);
 
 	return data;
 }) satisfies PageServerLoad;

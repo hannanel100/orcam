@@ -5,3 +5,5 @@ export const totalPages = writable(1);
 export const currentPage = writable(1);
 
 export const pageSize = writable(10);
+
+export const sort = writable('email:asc');

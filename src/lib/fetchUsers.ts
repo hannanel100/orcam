@@ -10,21 +10,22 @@ export type Data = {
 export async function fetchUsers(
 	limit: number,
 	skip: number,
+	sort: string,
 	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>
 ) {
 	if (limit > 100) {
 		throw error(400, 'limit must be less than 100');
 	}
-
-	const response = await fetch(
-		`https://admin.dev.orcam.io/api/v8/users?page=${skip}&size=${limit}&sort=email:desc`,
-		{
-			method: 'GET',
-			headers: {
-				Authorization: 'accessKey ' + ORCAM_API_KEY
-			}
+	const BASE_URL = 'https://admin.dev.orcam.io/api/v8/users';
+	const response = await fetch(`${BASE_URL}?page=${skip}&size=${limit}&sort=${sort}`, {
+		method: 'GET',
+		headers: {
+			Authorization: 'accessKey ' + ORCAM_API_KEY
 		}
-	);
+	});
 	const data: Data = await response.json();
+	console.log('🚀 ~ file: fetchUsers.ts:23 ~ sort:', sort);
+
+	console.log('🚀 ~ file: fetchUsers.ts:30 ~ data:', data);
 	return data;
 }

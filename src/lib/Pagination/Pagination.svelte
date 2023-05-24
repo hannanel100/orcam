@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { totalPages, currentPage, pageSize } from '$lib/stores/pages';
+	import { totalPages, currentPage, pageSize, sort } from '$lib/stores/pages';
 	import { page } from '$app/stores';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import {
@@ -9,6 +9,7 @@
 		faArrowRight,
 		faArrowRightLong
 	} from '@fortawesome/free-solid-svg-icons';
+	import Select from '$lib/select/Select.svelte';
 	// constants reused throughout the component
 	const BREAKPOINT_WIDTH = 768;
 	const MIN_PAGE_LINKS = 2;
@@ -19,6 +20,7 @@
 	$totalPages;
 	$currentPage;
 	$pageSize;
+	$sort;
 	// props
 	export let totalItems: number;
 	// setting store values
@@ -36,33 +38,61 @@
 		}
 	}
 	function reloadPage() {
-		goto(`/users?page=${$currentPage}&limit=${$pageSize}`);
+		goto(`/users?page=${$currentPage}&limit=${$pageSize}&sort=${$sort}`);
 	}
+	let options = [
+		{
+			value: '10',
+			text: '10',
+			selected: true
+		},
+		{
+			value: '20',
+			text: '20',
+			selected: false
+		},
+		{
+			value: '50',
+			text: '50',
+			selected: false
+		},
+		{
+			value: '100',
+			text: '100',
+			selected: false
+		}
+	];
 </script>
 
 <svelte:window bind:innerWidth on:change={reloadPage} />
 <div class="pagination-select-container">
-	<select bind:value={$pageSize} on:change={() => pageSize.set($pageSize)}>
-		{#each [10, 20, 50, 100] as _, i}
+	<Select bind:value={$pageSize} onChange={() => pageSize.set($pageSize)} bind:options />
+	<!-- {#each [10, 20, 50, 100] as _, i}
 			<option value={_}>{_}</option>
-		{/each}
-	</select>
+		{/each} -->
+
 	<div class="pagination-container">
 		{#if $currentPage - LARGE_PAGE_SKIP > 0}
-			<a href={`/users?page=${$currentPage - LARGE_PAGE_SKIP}&limit=${$pageSize}`} class="tooltip">
+			<a
+				href={`/users?page=${$currentPage - LARGE_PAGE_SKIP}&limit=${$pageSize}&sort=${$sort}`}
+				class="tooltip"
+			>
 				<Fa icon={faArrowLeftLong} />
 
 				<span class="tooltiptext top-right">Back {LARGE_PAGE_SKIP} pages</span></a
 			>
 		{/if}
 		{#if $currentPage - SMALL_PAGE_SKIP > 0}
-			<a href={`/users?page=${$currentPage - SMALL_PAGE_SKIP}&limit=${$pageSize}`} class="tooltip">
+			<a
+				href={`/users?page=${$currentPage - SMALL_PAGE_SKIP}&limit=${$pageSize}&sort=${$sort}`}
+				class="tooltip"
+			>
 				<Fa icon={faArrowLeft} />
 				<span class="tooltiptext top-right">Back {SMALL_PAGE_SKIP} pages</span></a
 			>
 		{/if}
 		{#if $currentPage > SMALL_PAGE_SKIP}
-			<a href={`/users?page=1&limit=${$pageSize}`} class="tooltip"
+			<a href={`/users?page=1&limit=${$pageSize}&sort=${$sort}`} class="tooltip"
 				>1
 				<span class="tooltiptext">First page</span></a
 			>
@@ -72,7 +102,7 @@
 			<!-- only show the previous 5 if they exist and the next five if they exist -->
 			{#if i + 1 >= $currentPage - numOfPagesLinks && i + 1 <= $currentPage + numOfPagesLinks}
 				<a
-					href={`/users?page=${i + 1}&limit=${$pageSize}`}
+					href={`/users?page=${i + 1}&limit=${$pageSize}&sort=${$sort}`}
 					data-sveltekit-preload-data="hover"
 					class={`${$currentPage === i + 1 ? 'active' : ''}`}>{i + 1}</a
 				>
@@ -81,20 +111,26 @@
 		<!-- last page, if not currently on it or within range to show it -->
 		{#if $currentPage < $totalPages - SMALL_PAGE_SKIP}
 			<span>...</span>
-			<a href={`/users?page=${$totalPages}&limit=${$pageSize}`} class="tooltip"
+			<a href={`/users?page=${$totalPages}&limit=${$pageSize}&sort=${$sort}`} class="tooltip"
 				>{$totalPages}
 				<span class="tooltiptext">Last page</span></a
 			>
 		{/if}
 		<!-- add an arrow if not in the end of the list, arrow will skip 10 pages -->
 		{#if $currentPage + SMALL_PAGE_SKIP < $totalPages}
-			<a href={`/users?page=${$currentPage + SMALL_PAGE_SKIP}&limit=${$pageSize}`} class="tooltip">
+			<a
+				href={`/users?page=${$currentPage + SMALL_PAGE_SKIP}&limit=${$pageSize}&sort=${$sort}`}
+				class="tooltip"
+			>
 				<Fa icon={faArrowRight} />
 				<span class="tooltiptext">Skip {SMALL_PAGE_SKIP} pages</span></a
 			>
 		{/if}
 		{#if $currentPage + LARGE_PAGE_SKIP < $totalPages}
-			<a href={`/users?page=${$currentPage + LARGE_PAGE_SKIP}&limit=${$pageSize}`} class="tooltip">
+			<a
+				href={`/users?page=${$currentPage + LARGE_PAGE_SKIP}&limit=${$pageSize}&sort=${$sort}`}
+				class="tooltip"
+			>
 				<Fa icon={faArrowRightLong} />
 				<span class="tooltiptext">Skip {LARGE_PAGE_SKIP} pages</span></a
 			>
