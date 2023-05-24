@@ -3,14 +3,15 @@
 	import type { User } from '$lib/types/';
 
 	export let user: User;
-	let { firstName, lastName, email, createdAt } = user;
-	$: ({ firstName, lastName, email, createdAt } = user);
+	let { firstName, lastName, email, createdAt, updatedAt } = user;
+	$: ({ firstName, lastName, email, createdAt, updatedAt } = user);
 	$: createdAt = new Intl.DateTimeFormat('en-GB').format(new Date(createdAt));
+	$: updatedAt = new Intl.DateTimeFormat('en-GB').format(new Date(updatedAt));
 	let text = 'more';
 </script>
 
 <div class="users-card">
-	<div class="left-container">
+	<div class="name-container">
 		{#if user.firstName}
 			<p class="firstName">{firstName}</p>
 		{:else}
@@ -22,33 +23,32 @@
 			<p class="lastName">Last Name N/A</p>
 		{/if}
 	</div>
-	<div class="right-container">
-		<div class="email-date-container">
-			{#if user.email}
-				<p class="email">{email}</p>
-			{:else}
-				<p class="email">Email N/A</p>
-			{/if}
-			{#if user.createdAt}
-				<p class="createdAt">{createdAt}</p>
-			{:else}
-				<p class="createdAt">Created At N/A</p>
-			{/if}
-			{#if user.createdAt}
-				<p class="createdAt">{createdAt}</p>
-			{:else}
-				<p class="createdAt">Created At N/A</p>
-			{/if}
-		</div>
-		<div>
-			<a href="/users/{user.userId}" data-sveltekit-preload-data="hover">
-				<Button
-					size="lg"
-					onMouseover={() => (text = 'details')}
-					onMouseleave={() => (text = 'more')}>{text}</Button
-				></a
-			>
-		</div>
+	<div class="email-container">
+		{#if user.email}
+			<p class="email">{email}</p>
+		{:else}
+			<p class="email">Email N/A</p>
+		{/if}
+	</div>
+	<div class="date-container">
+		{#if user.createdAt}
+			<p class="createdAt">Created: {createdAt}</p>
+		{:else}
+			<p class="createdAt">Created At N/A</p>
+		{/if}
+		{#if user.createdAt}
+			<p class="updatedAt">Updated: {updatedAt}</p>
+		{:else}
+			<p class="updatedAt">Updated At N/A</p>
+		{/if}
+	</div>
+
+	<div class="button-container">
+		<a href="/users/{user.userId}" data-sveltekit-preload-data="hover">
+			<Button size="lg" onMouseover={() => (text = 'details')} onMouseleave={() => (text = 'more')}
+				>{text}</Button
+			></a
+		>
 	</div>
 </div>
 
@@ -63,40 +63,45 @@
 		--font-size-xxs: 10px;
 	}
 	.users-card {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 1rem;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		gap: 0.5rem;
 		width: 100%;
-		height: 100px;
 		border-bottom: 1px solid #cdc2c2;
 		margin: auto;
 	}
-	.users-card .left-container {
+	.users-card .name-container {
+		grid-column-start: 1;
+		grid-column-end: 3;
 		display: flex;
+		justify-content: space-between;
 		gap: 0.5rem;
 	}
 
 	.users-card .firstName,
 	.users-card .lastName {
-		font-size: var(--font-size-lg);
+		font-size: clamp(1rem, 5vmin, 1.5rem);
 		font-weight: 700;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	.users-card .firstName::first-letter,
 	.users-card .lastName::first-letter {
 		text-transform: uppercase;
 	}
-	.right-container {
+	.email-container {
+		grid-row-start: 2;
+		grid-column-start: 1;
+		grid-column-end: 3;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: 0.5rem;
 	}
-	.email-date-container {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
-	.email-date-container .email {
+
+	.email-container .email {
 		font-size: var(--font-size-sm);
 		color: #848383;
 	}
@@ -104,6 +109,25 @@
 		text-decoration: none;
 		width: 100%;
 		color: inherit;
+	}
+	.email {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.button-container {
+		margin-bottom: 0.5rem;
+		grid-row-start: 3;
+		grid-column-start: 2;
+		grid-column-end: 3;
+		grid-row-end: 4;
+		display: grid;
+		place-items: center;
+	}
+	.button-container a {
+		width: 100%;
+		display: grid;
+		place-content: end;
 	}
 	@media (max-width: 768px) {
 		.users-card {
@@ -113,35 +137,55 @@
 			grid-template-columns: 1fr 1fr;
 			grid-template-rows: auto;
 		}
-		.users-card .firstName,
+		/* .users-card .firstName,
 		.users-card .lastName {
 			font-size: var(--font-size-sm);
-		}
+		} */
 		.email {
-			font-size: var(--font-size-xxs);
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+			font-size: clamp(0.8rem, 1vw, 1rem);
 		}
-		.createdAt {
-			display: none;
-		}
-		.left-container {
+
+		.name-container {
 			display: block;
 		}
-		.right-container {
-			display: block;
+		.email-container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			grid-row-start: 2;
+			grid-column-start: 1;
+			grid-column-end: 3;
+			grid-row-end: 3;
+		}
+		.button-container {
+			grid-row-start: 3;
+			grid-column-start: 2;
+			grid-column-end: 3;
+			grid-row-end: 4;
+		}
+		.button-container a {
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
 		}
 		@media (max-width: 480px) {
 			.users-card {
 				grid-template-columns: 1fr;
-				grid-template-rows: 1fr 1fr;
+				grid-template-rows: repeat(3, 1fr);
+				margin: 0 auto;
 			}
-			.left-container,
-			.right-container {
-				display: flex;
-				align-items: flex-start;
-				justify-content: space-between;
+
+			.email-container {
+				grid-row-start: 2;
+				grid-column-start: 1;
+				grid-column-end: 3;
+				grid-row-end: 3;
+			}
+			.button-container {
+				grid-row-start: 3;
+				grid-column-start: 2;
+				grid-column-end: 3;
+				grid-row-end: 4;
 			}
 			.email {
 				width: 10rem;
