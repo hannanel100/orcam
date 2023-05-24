@@ -6,7 +6,6 @@
 	export let data;
 	$users;
 	$: data.items && users.set([...data.items]);
-	$: console.log('🚀 ~ file: +page.svelte:8 ~ users:', $users);
 	$: totalItems = data?.total;
 	// if no data, then go to page 1
 	$: if ($users.length === 0) {

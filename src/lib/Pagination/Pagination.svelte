@@ -61,7 +61,7 @@
 				<span class="tooltiptext top-right">Back {SMALL_PAGE_SKIP} pages</span></a
 			>
 		{/if}
-		{#if $currentPage > 5}
+		{#if $currentPage > SMALL_PAGE_SKIP}
 			<a href={`/users?page=1&limit=${$pageSize}`} class="tooltip"
 				>1
 				<span class="tooltiptext">First page</span></a
@@ -79,7 +79,7 @@
 			{/if}
 		{/each}
 		<!-- last page, if not currently on it or within range to show it -->
-		{#if $currentPage < $totalPages - 5}
+		{#if $currentPage < $totalPages - SMALL_PAGE_SKIP}
 			<span>...</span>
 			<a href={`/users?page=${$totalPages}&limit=${$pageSize}`} class="tooltip"
 				>{$totalPages}
