@@ -1,5 +1,5 @@
 <script>
-	import Button from '$lib/Button/Button.svelte';
+	import Button from '$lib/button/Button.svelte';
 </script>
 
 <h1>Hannanel Gershinsky</h1>
@@ -15,15 +15,15 @@
 		colors...
 	</p>
 	<div class="link-container">
-		<Button>
-			<a href="/users" data-sveltekit-preload-data="hover">users</a>
-		</Button>
-		<Button>
-			<a href="/about" data-sveltekit-preload-data="hover">about</a>
-		</Button>
-		<Button>
-			<a href="https://www.github.com/hannanel100/orcam">Github</a>
-		</Button>
+		<a href="/users" data-sveltekit-preload-data="hover">
+			<Button>users</Button>
+		</a>
+		<a href="/about" data-sveltekit-preload-data="hover">
+			<Button>about</Button>
+		</a>
+		<a href="https://www.github.com/hannanel100/orcam">
+			<Button>Github</Button>
+		</a>
 	</div>
 </main>
 

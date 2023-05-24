@@ -9,19 +9,30 @@
 		faArrowRight,
 		faArrowRightLong
 	} from '@fortawesome/free-solid-svg-icons';
+	// constants reused throughout the component
+	const BREAKPOINT_WIDTH = 768;
+	const MIN_PAGE_LINKS = 2;
+	const MAX_PAGE_LINKS = 5;
+	const SMALL_PAGE_SKIP = 10;
+	const LARGE_PAGE_SKIP = 50;
+	// store values
 	$totalPages;
 	$currentPage;
 	$pageSize;
+	// props
 	export let totalItems: number;
+	// setting store values
 	$: totalPages.set(Math.ceil(totalItems / $pageSize) - 1);
 	$: currentPage.set(Number($page.url.searchParams.get('page')) || 1);
+	// setting local state values
 	let numOfPagesLinks = 5;
 	let innerWidth = 0;
+
 	$: {
-		if (innerWidth < 768) {
-			numOfPagesLinks = 2;
+		if (innerWidth < BREAKPOINT_WIDTH) {
+			numOfPagesLinks = MIN_PAGE_LINKS;
 		} else {
-			numOfPagesLinks = 5;
+			numOfPagesLinks = MAX_PAGE_LINKS;
 		}
 	}
 	function reloadPage() {
@@ -37,17 +48,17 @@
 		{/each}
 	</select>
 	<div class="pagination-container">
-		{#if $currentPage - 50 > 0}
-			<a href={`/users?page=${$currentPage - 50}&limit=${$pageSize}`} class="tooltip">
+		{#if $currentPage - LARGE_PAGE_SKIP > 0}
+			<a href={`/users?page=${$currentPage - LARGE_PAGE_SKIP}&limit=${$pageSize}`} class="tooltip">
 				<Fa icon={faArrowLeftLong} />
 
-				<span class="tooltiptext">Back 50 pages</span></a
+				<span class="tooltiptext top-right">Back {LARGE_PAGE_SKIP} pages</span></a
 			>
 		{/if}
-		{#if $currentPage - 10 > 0}
-			<a href={`/users?page=${$currentPage - 10}&limit=${$pageSize}`} class="tooltip">
+		{#if $currentPage - SMALL_PAGE_SKIP > 0}
+			<a href={`/users?page=${$currentPage - SMALL_PAGE_SKIP}&limit=${$pageSize}`} class="tooltip">
 				<Fa icon={faArrowLeft} />
-				<span class="tooltiptext">Back 10 pages</span></a
+				<span class="tooltiptext top-right">Back {SMALL_PAGE_SKIP} pages</span></a
 			>
 		{/if}
 		{#if $currentPage > 5}
@@ -76,16 +87,16 @@
 			>
 		{/if}
 		<!-- add an arrow if not in the end of the list, arrow will skip 10 pages -->
-		{#if $currentPage + 10 < $totalPages}
-			<a href={`/users?page=${$currentPage + 10}&limit=${$pageSize}`} class="tooltip">
+		{#if $currentPage + SMALL_PAGE_SKIP < $totalPages}
+			<a href={`/users?page=${$currentPage + SMALL_PAGE_SKIP}&limit=${$pageSize}`} class="tooltip">
 				<Fa icon={faArrowRight} />
-				<span class="tooltiptext">Skip 10 pages</span></a
+				<span class="tooltiptext">Skip {SMALL_PAGE_SKIP} pages</span></a
 			>
 		{/if}
-		{#if $currentPage + 50 < $totalPages}
-			<a href={`/users?page=${$currentPage + 50}&limit=${$pageSize}`} class="tooltip">
+		{#if $currentPage + LARGE_PAGE_SKIP < $totalPages}
+			<a href={`/users?page=${$currentPage + LARGE_PAGE_SKIP}&limit=${$pageSize}`} class="tooltip">
 				<Fa icon={faArrowRightLong} />
-				<span class="tooltiptext">Skip 50 pages</span></a
+				<span class="tooltiptext">Skip {LARGE_PAGE_SKIP} pages</span></a
 			>
 		{/if}
 	</div>
@@ -163,15 +174,29 @@
 	.tooltip:hover .tooltiptext {
 		visibility: visible;
 	}
+
 	@media (max-width: 768px) {
 		.pagination-container {
-			justify-content: start;
-			gap: 0.5rem;
-			padding-left: 1rem;
+			gap: 0.25rem;
 		}
 		.pagination-container a {
-			width: 1.25rem;
-			height: 1.25rem;
+			width: 1.15rem;
+			height: 1.15rem;
+			padding: 0.15rem;
+		}
+	}
+	@media (max-width: 480px) {
+		.pagination-container {
+			gap: 0.15rem;
+		}
+		.tooltip .tooltiptext {
+			width: 80px;
+			left: -50px;
+		}
+
+		.pagination-container a {
+			width: 1rem;
+			height: 1rem;
 			padding: 0.15rem;
 		}
 	}

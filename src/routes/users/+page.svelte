@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import Pagination from '$lib/Pagination/Pagination.svelte';
+	import Pagination from '$lib/pagination/Pagination.svelte';
 	import UserCard from './UserCard.svelte';
 
 	export let data;

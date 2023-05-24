@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/Button/Button.svelte';
+	import Button from '$lib/button/Button.svelte';
 	import type { User } from '$lib/types/';
 
 	export let user: User;
@@ -40,8 +40,12 @@
 			{/if}
 		</div>
 		<div>
-			<Button size="lg" onMouseover={() => (text = 'details')} onMouseleave={() => (text = 'more')}
-				><a href="/users/{user.userId}" data-sveltekit-preload-data="hover">{text}</a></Button
+			<a href="/users/{user.userId}" data-sveltekit-preload-data="hover">
+				<Button
+					size="lg"
+					onMouseover={() => (text = 'details')}
+					onMouseleave={() => (text = 'more')}>{text}</Button
+				></a
 			>
 		</div>
 	</div>

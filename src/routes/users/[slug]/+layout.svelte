@@ -1,5 +1,5 @@
 <script>
-	import Button from '$lib/Button/Button.svelte';
+	import Button from '$lib/button/Button.svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 </script>

@@ -20,7 +20,6 @@
 		needConsent: boolean;
 		loginToken: string;
 	}
-	console.log($$props);
 	export let formattedData: Data;
 </script>
 
