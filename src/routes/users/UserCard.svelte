@@ -45,7 +45,7 @@
 
 	<div class="button-container">
 		<a href="/users/{user.userId}" data-sveltekit-preload-data="hover">
-			<Button size="lg" onMouseover={() => (text = 'details')} onMouseleave={() => (text = 'more')}
+			<Button size="lg" onMouseover={() => (text = 'details')} onMouseleave={() => (text = 'more')} onFocus={() => (text = 'details')} onBlur={() => (text = 'more')}
 				>{text}</Button
 			></a
 		>

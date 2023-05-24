@@ -6,6 +6,8 @@
 		onClick?: () => void;
 		onMouseover?: () => void;
 		onMouseleave?: () => void;
+		onFocus?: () => void;
+		onBlur?: () => void;
 		size?: 'sm' | 'md' | 'lg' | 'default';
 	};
 	export let variant: ButtonProps['variant'] = 'primary';
@@ -13,6 +15,8 @@
 	export let onClick: ButtonProps['onClick'] = () => {};
 	export let onMouseover: ButtonProps['onMouseover'] = () => {};
 	export let onMouseleave: ButtonProps['onMouseleave'] = () => {};
+	export let onFocus: ButtonProps['onFocus'] = () => {};
+	export let onBlur: ButtonProps['onBlur'] = () => {};
 	export let size: ButtonProps['size'] = 'default';
 </script>
 
@@ -22,7 +26,8 @@
 	{disabled}
 	on:mouseover={onMouseover}
 	on:mouseleave={onMouseleave}
-	on:focus={() => console.log('hover')}
+	on:focus={onFocus}
+	on:blur={onBlur}
 >
 	<slot>Button</slot>
 </button>
