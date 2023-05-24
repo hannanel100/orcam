@@ -5,7 +5,6 @@
 	export let user: User;
 	let { firstName, lastName, email, createdAt } = user;
 	$: ({ firstName, lastName, email, createdAt } = user);
-	console.log('🚀 ~ file: UserCard.svelte:7 ~ email:', email);
 	$: createdAt = new Intl.DateTimeFormat('en-GB').format(new Date(createdAt));
 	let text = 'more';
 </script>
