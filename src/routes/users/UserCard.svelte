@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/button/Button.svelte';
+	import Button from '$lib/Button/Button.svelte';
 	import type { User } from '$lib/types/';
 
 	export let user: User;

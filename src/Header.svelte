@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import AnimatedHamburger from './Hamburger.svelte';
-	import Button from '$lib/button/Button.svelte';
+	import Button from '$lib/Button/Button.svelte';
 	import { page } from '$app/stores';
 	export let open = false;
 	export let onClick = (): void => {

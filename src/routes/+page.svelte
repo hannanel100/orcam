@@ -1,5 +1,5 @@
 <script>
-	import Button from '$lib/button/Button.svelte';
+	import Button from '$lib/Button/Button.svelte';
 </script>
 
 <h1>Hannanel Gershinsky</h1>
