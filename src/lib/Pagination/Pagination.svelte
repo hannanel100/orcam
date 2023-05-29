@@ -67,10 +67,6 @@
 <svelte:window bind:innerWidth on:change={reloadPage} />
 <div class="pagination-select-container">
 	<Select bind:value={$pageSize} onChange={() => pageSize.set($pageSize)} bind:options />
-	<!-- {#each [10, 20, 50, 100] as _, i}
-			<option value={_}>{_}</option>
-		{/each} -->
-
 	<div class="pagination-container">
 		{#if $currentPage - LARGE_PAGE_SKIP > 0}
 			<a
@@ -149,16 +145,7 @@
 		padding-top: 4rem;
 		padding-bottom: 4rem;
 	}
-	.pagination-select-container select {
-		padding: 0.5rem 1rem;
-		border-radius: 5px;
-		background-color: #000;
-		color: #fff;
-		border: none;
-	}
-	.pagination-select-container select:hover {
-		color: var(--secondary-accent-color);
-	}
+
 	.pagination-container {
 		display: flex;
 		justify-content: center;
