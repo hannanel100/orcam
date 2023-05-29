@@ -19,36 +19,12 @@
 		goto(`/users?page=${$currentPage}&limit=${$pageSize}&sort=${$sort}`);
 	}
 	let options = [
-		{
-			value: 'email:asc',
-			text: 'Email Ascend',
-			selected: true
-		},
-		{
-			value: 'email:desc',
-			text: 'Email Desc',
-			selected: false
-		},
-		{
-			value: 'createdAt:desc',
-			text: 'Created At Desc',
-			selected: false
-		},
-		{
-			value: 'createdAt:asc',
-			text: 'Created At Ascend',
-			selected: false
-		},
-		{
-			value: 'updatedAt:desc',
-			text: 'Updated At Desc',
-			selected: false
-		},
-		{
-			value: 'updatedAt:asc',
-			text: 'Updated At Asc',
-			selected: false
-		}
+		'email:asc',
+		'email:desc',
+		'createdAt:desc',
+		'createdAt:asc',
+		'updatedAt:desc',
+		'updatedAt:asc'
 	];
 </script>
 

@@ -24,8 +24,9 @@
 	// props
 	export let totalItems: number;
 	// setting store values
-	$: totalPages.set(Math.ceil(totalItems / $pageSize) - 1);
+	$: totalPages.set(Math.ceil(totalItems / selected) - 1);
 	$: currentPage.set(Number($page.url.searchParams.get('page')) || 1);
+	$: pageSize.set(Number($page.url.searchParams.get('limit')) || 10);
 	// setting local state values
 	let numOfPagesLinks = 5;
 	let innerWidth = 0;
@@ -40,33 +41,18 @@
 	function reloadPage() {
 		goto(`/users?page=${$currentPage}&limit=${$pageSize}&sort=${$sort}`);
 	}
-	let options = [
-		{
-			value: '10',
-			text: '10',
-			selected: true
-		},
-		{
-			value: '20',
-			text: '20',
-			selected: false
-		},
-		{
-			value: '50',
-			text: '50',
-			selected: false
-		},
-		{
-			value: '100',
-			text: '100',
-			selected: false
+	let options = [10, 20, 50, 100];
+	let selected = options.filter((option) => option === 10)[0];
+	$: {
+		if (selected) {
+			pageSize.set(Number(selected));
 		}
-	];
+	}
 </script>
 
 <svelte:window bind:innerWidth on:change={reloadPage} />
 <div class="pagination-select-container">
-	<Select bind:value={$pageSize} onChange={() => pageSize.set($pageSize)} bind:options />
+	<Select bind:value={selected} onChange={() => pageSize.set($pageSize)} bind:options />
 	<div class="pagination-container">
 		{#if $currentPage - LARGE_PAGE_SKIP > 0}
 			<a

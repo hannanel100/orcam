@@ -1,17 +1,14 @@
 <script lang="ts">
-	type Option = {
-		value: string;
-		text: string;
-		selected: boolean;
-	};
-	export let options: Option[] = [];
-	export let onChange = () => {};
-	export let value: string | number;
+	export let options: string[] | number[] = [];
+	// onchange should be optional
+	export let onChange: () => void;
+	export let value: number | string | undefined;
+	$: console.log('value: ', value);
 </script>
 
 <select bind:value on:change={onChange} class="select">
 	{#each options as option}
-		<option value={option.value} selected={option.selected}>{option.text}</option>
+		<option value={option}>{option}</option>
 	{/each}
 </select>
 
