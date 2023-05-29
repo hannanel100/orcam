@@ -15,7 +15,7 @@
 		colors...
 	</p>
 	<div class="link-container">
-		<a href="/users" data-sveltekit-preload-data="hover">
+		<a href="/users?page=1&limit=10&sort=email:asc" data-sveltekit-preload-data="hover">
 			<Button>users</Button>
 		</a>
 		<a href="/about" data-sveltekit-preload-data="hover">

@@ -24,8 +24,10 @@
 			<nav class="mobile-nav" transition:fly={{ y: -200, duration: 400 }}>
 				<a href="/" on:click={onClick} class={`${$page.url.pathname === '/' && 'active'}`}>Home</a>
 				<div class="spacer" />
-				<a href="/users" on:click={onClick} class={`${$page.url.pathname === '/users' && 'active'}`}
-					>Users</a
+				<a
+					href="/users?page=1&limit=10&sort=email:asc"
+					on:click={onClick}
+					class={`${$page.url.pathname === '/users' && 'active'}`}>Users</a
 				>
 				<div class="spacer" />
 				<a href="/about" on:click={onClick} class={`${$page.url.pathname === '/about' && 'active'}`}
@@ -43,7 +45,10 @@
 			<Button variant="secondary">Check me out!</Button>
 		</a>
 		<nav class="desktop-nav">
-			<a href="/users" class={`${$page.url.pathname === '/users' && 'active'}`}>Users</a>
+			<a
+				href="/users?page=1&limit=10&sort=email:asc"
+				class={`${$page.url.pathname === '/users' && 'active'}`}>Users</a
+			>
 			<a href="/about" class={`${$page.url.pathname === '/about' && 'active'}`}>About</a>
 		</nav>
 	</div>
