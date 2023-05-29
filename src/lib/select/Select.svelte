@@ -3,7 +3,6 @@
 	// onchange should be optional
 	export let onChange: () => void;
 	export let value: number | string | undefined;
-	$: console.log('value: ', value);
 </script>
 
 <select bind:value on:change={onChange} class="select">
