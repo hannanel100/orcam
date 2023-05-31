@@ -1,10 +1,9 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { fetchUser } from '$lib/fetchUser';
-import type { User } from '$lib/types';
-
+import type { User } from '@prisma/client';
 export const load = (async ({ params }) => {
-	const user: User = await fetchUser(params.slug);
+	const user: User | null = await fetchUser(params.slug);
 
 	if (user) {
 		return user;

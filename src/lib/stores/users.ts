@@ -1,4 +1,4 @@
 import { writable } from 'svelte/store';
-import type { User } from '$lib/types';
+import type { User } from '@prisma/client';
 
 export const users = writable<User[] | []>([]);

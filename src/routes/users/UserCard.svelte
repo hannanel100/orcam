@@ -1,52 +1,56 @@
 <script lang="ts">
 	import Button from '$lib/Button/Button.svelte';
-	import type { User } from '$lib/types/';
-
+	// import type { User } from '$lib/types/';
+	import type { User } from '@prisma/client';
 	export let user: User;
 	let { firstName, lastName, email, createdAt, updatedAt } = user;
 	$: ({ firstName, lastName, email, createdAt, updatedAt } = user);
-	$: createdAt = new Intl.DateTimeFormat('en-GB').format(new Date(createdAt));
-	$: updatedAt = new Intl.DateTimeFormat('en-GB').format(new Date(updatedAt));
+	$: formattedCreatedAt = new Intl.DateTimeFormat('en-GB').format(new Date(createdAt));
+	$: formattedUpdatedAt = new Intl.DateTimeFormat('en-GB').format(new Date(updatedAt));
 	let text = 'more';
 </script>
 
 <div class="users-card">
 	<div class="name-container">
-		{#if user.firstName}
+		{#if firstName}
 			<p class="firstName">{firstName}</p>
 		{:else}
 			<p class="firstName">First Name N/A</p>
 		{/if}
-		{#if user.lastName}
+		{#if lastName}
 			<p class="lastName">{lastName}</p>
 		{:else}
 			<p class="lastName">Last Name N/A</p>
 		{/if}
 	</div>
 	<div class="email-container">
-		{#if user.email}
+		{#if email}
 			<p class="email">{email}</p>
 		{:else}
 			<p class="email">Email N/A</p>
 		{/if}
 	</div>
 	<div class="date-container">
-		{#if user.createdAt}
-			<p class="createdAt">Created: {createdAt}</p>
+		{#if createdAt}
+			<p class="createdAt">Created: {formattedCreatedAt}</p>
 		{:else}
 			<p class="createdAt">Created At N/A</p>
 		{/if}
-		{#if user.createdAt}
-			<p class="updatedAt">Updated: {updatedAt}</p>
+		{#if updatedAt}
+			<p class="updatedAt">Updated: {formattedUpdatedAt}</p>
 		{:else}
 			<p class="updatedAt">Updated At N/A</p>
 		{/if}
 	</div>
 
 	<div class="button-container">
-		<a href="/users/{user.userId}" data-sveltekit-preload-data="hover">
-			<Button size="lg" onMouseover={() => (text = 'details')} onMouseleave={() => (text = 'more')} onFocus={() => (text = 'details')} onBlur={() => (text = 'more')}
-				>{text}</Button
+		<a href="/users/{user.hash}" data-sveltekit-preload-data="hover">
+			<Button
+				size="lg"
+				onMouseover={() => (text = 'details')}
+				onMouseleave={() => (text = 'more')}
+				onFocus={() => (text = 'details')}
+				onBlur={() => (text = 'more')}>{text}</Button
 			></a
 		>
 	</div>

@@ -17,7 +17,7 @@
 		consent: string;
 		rootAccountId: string;
 		role: string;
-		needConsent: boolean;
+		needConsent: boolean | null;
 		loginToken: string;
 	}
 	export let formattedData: Data;

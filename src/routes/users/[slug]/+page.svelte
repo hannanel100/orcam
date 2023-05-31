@@ -4,7 +4,7 @@
 	const formatData = (property: string | null) => {
 		return property ? property : 'N/A';
 	};
-	const formatDate = (date: string | null, includeTime: boolean = false) => {
+	const formatDate = (date: Date | null, includeTime: boolean = false) => {
 		if (!date) return 'N/A';
 		if (includeTime)
 			return new Date(date).toLocaleString('en-US', {
@@ -41,7 +41,7 @@
 		consent: string;
 		rootAccountId: string;
 		role: string;
-		needConsent: boolean;
+		needConsent: boolean | null;
 		loginToken: string;
 	}
 	// format data
