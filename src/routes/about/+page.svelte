@@ -1,18 +1,19 @@
 <!-- about page -->
 <main>
-	<h1>About Me and Orcam's Home Task</h1>
+	<h1>About Me and <span class="redacted">Redacted Company Name</span>.'s Home Task</h1>
 	<p>Hey there!</p>
 	<p>
-		I'm excited to share my solution to the Orcam Home Task. This opportunity allowed me to dive
-		into the world of Sveltkit and build something awesome!
+		I'm excited to share my solution to the <span class="redacted">Redacted Company Name</span>.
+		Home Task. This opportunity allowed me to dive into the world of Sveltkit and build something
+		awesome!
 	</p>
 	<h2>My Journey with Svelte and Sveltekit</h2>
 	<p>
 		During this task, I had the chance to explore Sveltkit, a fantastic framework for developing web
 		applications. Let me tell you, I fell in love with it! Svelte's simplicity and elegance truly
-		won me over. It made building the Orcam Home Task Sveltkit App a breeze. Uptill now, my go to
-		framework was Next.js, but I think I'm going to be using Sveltekit a lot more now, moving
-		forward!
+		won me over. It made building the <span class="redacted">Redacted Company Name</span>. Home Task
+		Sveltkit App a breeze. Uptill now, my go to framework was Next.js, but I think I'm going to be
+		using Sveltekit a lot more now, moving forward!
 	</p>
 	<h2>A Great Opportunity</h2>
 	<p>
@@ -21,8 +22,13 @@
 		showcase my ability to build a single-page application, handle routing, and integrate APIs
 		seamlessly.
 	</p>
-	<h2>Features of the Orcam Home Task Sveltkit App</h2>
-	<p>The Orcam Home Task Sveltkit App offers some cool features that I'm proud of:</p>
+	<h2>
+		Features of the <span class="redacted">Redacted Company Name</span>. Home Task Sveltkit App
+	</h2>
+	<p>
+		The <span class="redacted">Redacted Company Name</span>. Home Task Sveltkit App offers some cool
+		features that I'm proud of:
+	</p>
 	<ul>
 		<li>
 			<p>
@@ -47,15 +53,18 @@
 		</li>
 		<li>
 			<p>
-				<strong>About Page</strong>: Learn more about the Orcam Home Task and its creation.
+				<strong>About Page</strong>: Learn more about the
+				<span class="redacted">Redacted Company Name</span>. Home Task and its creation.
 			</p>
 		</li>
 	</ul>
-	<h2>A Thank You to Orcam</h2>
+	<h2>A Thank You to <span class="redacted">Redacted Company Name</span>.</h2>
 	<p>
-		I want to express my gratitude to Orcam for providing me with this task. It was a fantastic
-		opportunity to showcase my skills and passion for web development. I thoroughly enjoyed working
-		on the Orcam Home Task Sveltkit App and look forward to further challenges.
+		I want to express my gratitude to <span class="redacted">Redacted Company Name</span>. for
+		providing me with this task. It was a fantastic opportunity to showcase my skills and passion
+		for web development. I thoroughly enjoyed working on the
+		<span class="redacted">Redacted Company Name</span>. Home Task Sveltkit App and look forward to
+		further challenges.
 	</p>
 	<p>Thank you for considering my solution!</p>
 </main>
@@ -70,5 +79,8 @@
 	main p {
 		font-size: clamp(1rem, 5vmin, 1.5rem);
 		line-height: 1.5;
+	}
+	.redacted {
+		text-decoration: line-through;
 	}
 </style>

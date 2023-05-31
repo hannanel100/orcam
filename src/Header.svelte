@@ -73,7 +73,8 @@
 		align-items: center;
 	}
 	.logo {
-		width: 6rem;
+		/* width: 6rem; */
+		width: 50px;
 		aspect-ratio: auto;
 	}
 	.desktop-nav .active,

@@ -5,14 +5,19 @@
 <h1>Hannanel Gershinsky</h1>
 
 <main>
-	<p>This is my solution to the home task for the Frontend developer role in Orcam.</p>
+	<p>
+		This is my solution to the home task for the Frontend developer role in <span class="redacted"
+			>Redacted Company Name</span
+		>.
+	</p>
 	<p>
 		I had a great time working on this, getting to know svelte and sveltekit was definitely on my
 		radar, so thanks for the opportunity!
 	</p>
 	<p>
-		The design of the application is heavily inspired by orcams website. I even "stole" some of your
-		colors...
+		The design of the application is heavily inspired by <span class="redacted"
+			>Redacted Company Name</span
+		>. website. I even "stole" some of your colors...
 	</p>
 	<div class="link-container">
 		<a href="/users?page=1&limit=10&sort=email:asc" data-sveltekit-preload-data="hover">
@@ -73,5 +78,8 @@
 		align-items: center;
 		flex-wrap: wrap;
 		gap: 1rem;
+	}
+	.redacted {
+		text-decoration: line-through;
 	}
 </style>
