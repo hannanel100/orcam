@@ -1,5 +1,7 @@
 import { error } from '@sveltejs/kit';
-import { PrismaClient, type User } from '@prisma/client';
+import type { User } from '@prisma/client';
+import { prisma } from '../../prisma/db';
+
 export type Data = {
 	total: number;
 	items: User[];
@@ -18,7 +20,6 @@ export async function fetchUsers(limit: number, skip: number, sort: string) {
 		page: '0',
 		size: '0'
 	};
-	const prisma = new PrismaClient();
 	const users = await prisma.user.findMany({
 		skip,
 		take: limit,
@@ -31,6 +32,7 @@ export async function fetchUsers(limit: number, skip: number, sort: string) {
 	data.total = totalUsers;
 	data.page = skip.toString();
 	data.size = limit.toString();
+	console.log('🚀 ~ file: fetchUsers.ts:35 ~ fetchUsers ~ data:', data);
 
 	return data;
 }
