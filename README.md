@@ -7,6 +7,7 @@ This repository contains the solution for the ~~Redacted Company Name~~ Home Tas
 - [~~Redacted Company Name~~ Home Task Sveltkit App](#redacted-company-name-home-task-sveltkit-app)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
+  - [Structure](#structure)
   - [Features](#features)
   - [Technologies](#technologies)
   - [Getting Started](#getting-started)
@@ -17,6 +18,8 @@ This repository contains the solution for the ~~Redacted Company Name~~ Home Tas
 
 The ~~Redacted Company Name~~ Home Task Sveltkit App is a single-page application built using Sveltkit, TypeScript, and Svelte Router. It allows users to view a list of users and access their details. The application also includes an About page providing additional information.
 
+## Structure
+![alt text](https://github.com/hannanel100/sveltekit-home-task/blob/master/sveltekit-home-task-structure.png?raw=true)
 ## Features
 
 The ~~Redacted Company Name~~ Home Task Sveltkit App offers the following features:
